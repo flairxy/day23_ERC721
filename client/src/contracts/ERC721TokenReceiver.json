@@ -38,15 +38,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"onERC721Received(address,address,uint256,bytes)\":{\"details\":\"The ERC721 smart contract calls this function on the recipient  after a `transfer`. This function MAY throw to revert and reject the  transfer. Return of other than the magic value MUST result in the  transaction being reverted.  Note: the contract address is always the message sender.\",\"params\":{\"_data\":\"Additional data with no specified format\",\"_from\":\"The address which previously owned the token\",\"_operator\":\"The address which called `safeTransferFrom` function\",\"_tokenId\":\"The NFT identifier which is being transferred\"},\"return\":\"`bytes4(keccak256(\\\"onERC721Received(address,address,uint256,bytes)\\\"))`  unless throwing\"}}},\"userdoc\":{\"methods\":{\"onERC721Received(address,address,uint256,bytes)\":{\"notice\":\"Handle the receipt of an NFT\"}}}},\"settings\":{\"compilationTarget\":{\"/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721.sol\":\"ERC721TokenReceiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721.sol\":{\"keccak256\":\"0x8215be4fa08e933c1f3c945bcb9e4d5ab3a2a0752a8d5ded43b1c71c44120da2\",\"urls\":[\"bzz-raw://f5e282cfe254565b3c66318b113855b4eed52097bedcba64f7442e12feb854db\",\"dweb:/ipfs/QmdadsP6CamxJVtPyqE4LFeJrdbzQ23QTDuZb3WdkqLFxc\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"onERC721Received\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"onERC721Received(address,address,uint256,bytes)\":{\"details\":\"The ERC721 smart contract calls this function on the recipient  after a `transfer`. This function MAY throw to revert and reject the  transfer. Return of other than the magic value MUST result in the  transaction being reverted.  Note: the contract address is always the message sender.\",\"params\":{\"_data\":\"Additional data with no specified format\",\"_from\":\"The address which previously owned the token\",\"_operator\":\"The address which called `safeTransferFrom` function\",\"_tokenId\":\"The NFT identifier which is being transferred\"},\"return\":\"`bytes4(keccak256(\\\"onERC721Received(address,address,uint256,bytes)\\\"))`  unless throwing\"}}},\"userdoc\":{\"methods\":{\"onERC721Received(address,address,uint256,bytes)\":{\"notice\":\"Handle the receipt of an NFT\"}}}},\"settings\":{\"compilationTarget\":{\"/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721Token.sol\":\"ERC721TokenReceiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721Token.sol\":{\"keccak256\":\"0x8215be4fa08e933c1f3c945bcb9e4d5ab3a2a0752a8d5ded43b1c71c44120da2\",\"urls\":[\"bzz-raw://f5e282cfe254565b3c66318b113855b4eed52097bedcba64f7442e12feb854db\",\"dweb:/ipfs/QmdadsP6CamxJVtPyqE4LFeJrdbzQ23QTDuZb3WdkqLFxc\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.7;\n\nlibrary AddressUtils\n{\n\n  /**\n   * @dev Returns whether the target address is a contract.\n   * @param _addr Address to check.\n   * @return True if _addr is a contract, false if not.\n   */\n  function isContract(\n    address _addr\n  )\n    internal\n    view\n    returns (bool addressCheck)\n  {\n    uint256 size;\n\n    /**\n     * XXX Currently there is no better way to check if there is a contract in an address than to\n     * check the size of the code at that address.\n     * See https://ethereum.stackexchange.com/a/14016/36603 for more details about how this works.\n     * TODO: Check this again before the Serenity release, because all addresses will be\n     * contracts then.\n     */\n    assembly { size := extcodesize(_addr) } // solhint-disable-line\n    addressCheck = size > 0;\n  }\n\n}\n\ninterface ERC721TokenReceiver {\n    /// @notice Handle the receipt of an NFT\n    /// @dev The ERC721 smart contract calls this function on the recipient\n    ///  after a `transfer`. This function MAY throw to revert and reject the\n    ///  transfer. Return of other than the magic value MUST result in the\n    ///  transaction being reverted.\n    ///  Note: the contract address is always the message sender.\n    /// @param _operator The address which called `safeTransferFrom` function\n    /// @param _from The address which previously owned the token\n    /// @param _tokenId The NFT identifier which is being transferred\n    /// @param _data Additional data with no specified format\n    /// @return `bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))`\n    ///  unless throwing\n    function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes calldata _data) external returns(bytes4);\n}\n\ninterface ERC721 /* is ERC165 */ {\n    /// @dev This emits when ownership of any NFT changes by any mechanism.\n    ///  This event emits when NFTs are created (`from` == 0) and destroyed\n    ///  (`to` == 0). Exception: during contract creation, any number of NFTs\n    ///  may be created and assigned without emitting Transfer. At the time of\n    ///  any transfer, the approved address for that NFT (if any) is reset to none.\n    event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);\n\n    /// @dev This emits when the approved address for an NFT is changed or\n    ///  reaffirmed. The zero address indicates there is no approved address.\n    ///  When a Transfer event emits, this also indicates that the approved\n    ///  address for that NFT (if any) is reset to none.\n    event Approval(address indexed _owner, address indexed _approved, uint256 indexed _tokenId);\n\n    /// @dev This emits when an operator is enabled or disabled for an owner.\n    ///  The operator can manage all NFTs of the owner.\n    event ApprovalForAll(address indexed _owner, address indexed _operator, bool _approved);\n\n    /// @notice Count all NFTs assigned to an owner\n    /// @dev NFTs assigned to the zero address are considered invalid, and this\n    ///  function throws for queries about the zero address.\n    /// @param _owner An address for whom to query the balance\n    /// @return The number of NFTs owned by `_owner`, possibly zero\n    function balanceOf(address _owner) external view returns (uint256);\n\n    /// @notice Find the owner of an NFT\n    /// @dev NFTs assigned to zero address are considered invalid, and queries\n    ///  about them do throw.\n    /// @param _tokenId The identifier for an NFT\n    /// @return The address of the owner of the NFT\n    function ownerOf(uint256 _tokenId) external view returns (address);\n\n    /// @notice Transfers the ownership of an NFT from one address to another address\n    /// @dev Throws unless `msg.sender` is the current owner, an authorized\n    ///  operator, or the approved address for this NFT. Throws if `_from` is\n    ///  not the current owner. Throws if `_to` is the zero address. Throws if\n    ///  `_tokenId` is not a valid NFT. When transfer is complete, this function\n    ///  checks if `_to` is a smart contract (code size > 0). If so, it calls\n    ///  `onERC721Received` on `_to` and throws if the return value is not\n    ///  `bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))`.\n    /// @param _from The current owner of the NFT\n    /// @param _to The new owner\n    /// @param _tokenId The NFT to transfer\n    /// @param data Additional data with no specified format, sent in call to `_to`\n    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes calldata data) external payable;\n\n    /// @notice Transfers the ownership of an NFT from one address to another address\n    /// @dev This works identically to the other function with an extra data parameter,\n    ///  except this function just sets data to \"\".\n    /// @param _from The current owner of the NFT\n    /// @param _to The new owner\n    /// @param _tokenId The NFT to transfer\n    function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;\n\n    /// @notice Transfer ownership of an NFT -- THE CALLER IS RESPONSIBLE\n    ///  TO CONFIRM THAT `_to` IS CAPABLE OF RECEIVING NFTS OR ELSE\n    ///  THEY MAY BE PERMANENTLY LOST\n    /// @dev Throws unless `msg.sender` is the current owner, an authorized\n    ///  operator, or the approved address for this NFT. Throws if `_from` is\n    ///  not the current owner. Throws if `_to` is the zero address. Throws if\n    ///  `_tokenId` is not a valid NFT.\n    /// @param _from The current owner of the NFT\n    /// @param _to The new owner\n    /// @param _tokenId The NFT to transfer\n    function transferFrom(address _from, address _to, uint256 _tokenId) external payable;\n\n    /// @notice Change or reaffirm the approved address for an NFT\n    /// @dev The zero address indicates there is no approved address.\n    ///  Throws unless `msg.sender` is the current NFT owner, or an authorized\n    ///  operator of the current owner.\n    /// @param _approved The new approved NFT controller\n    /// @param _tokenId The NFT to approve\n    function approve(address _approved, uint256 _tokenId) external payable;\n\n    /// @notice Enable or disable approval for a third party (\"operator\") to manage\n    ///  all of `msg.sender`'s assets\n    /// @dev Emits the ApprovalForAll event. The contract MUST allow\n    ///  multiple operators per owner.\n    /// @param _operator Address to add to the set of authorized operators\n    /// @param _approved True if the operator is approved, false to revoke approval\n    function setApprovalForAll(address _operator, bool _approved) external;\n\n    /// @notice Get the approved address for a single NFT\n    /// @dev Throws if `_tokenId` is not a valid NFT.\n    /// @param _tokenId The NFT to find the approved address for\n    /// @return The approved address for this NFT, or the zero address if there is none\n    function getApproved(uint256 _tokenId) external view returns (address);\n\n    /// @notice Query if an address is an authorized operator for another address\n    /// @param _owner The address that owns the NFTs\n    /// @param _operator The address that acts on behalf of the owner\n    /// @return True if `_operator` is an approved operator for `_owner`, false otherwise\n    function isApprovedForAll(address _owner, address _operator) external view returns (bool);\n}\n\ncontract ERC721Token is ERC721 {\n    using AddressUtils for address;\n    mapping(address => uint) private ownerToTokenCount;\n    mapping(uint => address) private idToOwner;\n    mapping(uint => address) private idToApproved;\n    mapping(address => mapping(address => bool)) private ownerToOperators;\n    bytes4 internal constant MAGIC_ON_ERC721_RECEIVED = 0x150b7a02;\n    address public admin;\n    uint public nextTokenId;\n\n    constructor() public {\n      admin = msg.sender;\n    }\n\n    function mint() external {\n      require(msg.sender == admin, 'only admin');\n      ownerToTokenCount[msg.sender]++;\n      idToOwner[nextTokenId] = msg.sender;\n      emit Transfer(address(0), msg.sender, nextTokenId);\n      nextTokenId++;\n    }\n    \n    function balanceOf(address _owner) external view returns(uint) {\n        return ownerToTokenCount[_owner];\n    }\n    \n    function ownerOf(uint256 _tokenId) external view returns (address) {\n        return idToOwner[_tokenId];\n    }\n    \n    function safeTransferFrom(address _from, address _to, uint _tokenId, bytes calldata data) external payable {\n        _safeTransferFrom(_from, _to, _tokenId, data);\n    }\n\n    function safeTransferFrom(address _from, address _to, uint _tokenId) external payable {\n        _safeTransferFrom(_from, _to, _tokenId, \"\"); \n    }\n    \n    function transferFrom(address _from, address _to, uint _tokenId) external payable {\n        _transfer(_from, _to, _tokenId);\n    }\n    \n    function approve(address _approved, uint _tokenId) external payable {\n        address owner = idToOwner[_tokenId];\n        require(msg.sender == owner, 'Not authorized');\n        idToApproved[_tokenId] = _approved;\n        emit Approval(owner, _approved, _tokenId);\n    }\n    \n    function setApprovalForAll(address _operator, bool _approved) external {\n        ownerToOperators[msg.sender][_operator] = _approved;\n        emit ApprovalForAll(msg.sender, _operator, _approved);\n    }\n    \n    function getApproved(uint _tokenId) external view returns (address) {\n        return idToApproved[_tokenId];   \n    }\n    \n    function isApprovedForAll(address _owner, address _operator) external view returns (bool) {\n        return ownerToOperators[_owner][_operator];\n    }\n    \n    function _safeTransferFrom(address _from, address _to, uint _tokenId, bytes memory data) internal {\n       _transfer(_from, _to, _tokenId);\n        \n        if(_to.isContract()) {\n          bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, data);\n          require(retval == MAGIC_ON_ERC721_RECEIVED, 'recipient SC cannot handle ERC721 tokens');\n        }\n    }\n    \n    function _transfer(address _from, address _to, uint _tokenId) \n        internal \n        canTransfer(_tokenId) {\n        ownerToTokenCount[_from] -= 1; \n        ownerToTokenCount[_to] += 1;\n        idToOwner[_tokenId] = _to;\n        emit Transfer(_from, _to, _tokenId);\n    }\n    \n    modifier canTransfer(uint _tokenId) {\n        address owner = idToOwner[_tokenId];\n        require(owner == msg.sender \n            || idToApproved[_tokenId] == msg.sender\n            || ownerToOperators[owner][msg.sender] == true, 'Transfer not authorized');\n        _;\n    }\n}\n",
-  "sourcePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721.sol",
+  "sourcePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721Token.sol",
   "ast": {
-    "absolutePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721.sol",
+    "absolutePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721Token.sol",
     "exportedSymbols": {
       "AddressUtils": [
         20
@@ -2079,7 +2079,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 535,
+                        "referencedDeclaration": 538,
                         "src": "7777:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2166,7 +2166,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 535,
+                            "referencedDeclaration": 538,
                             "src": "7841:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -2242,10 +2242,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        538,
-                        539
+                        541,
+                        542
                       ],
-                      "referencedDeclaration": 539,
+                      "referencedDeclaration": 542,
                       "src": "7833:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2306,7 +2306,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 535,
+                          "referencedDeclaration": 538,
                           "src": "7901:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2405,7 +2405,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 535,
+                        "referencedDeclaration": 538,
                         "src": "7947:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2504,7 +2504,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 535,
+                          "referencedDeclaration": 538,
                           "src": "7991:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -3689,7 +3689,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 535,
+                            "referencedDeclaration": 538,
                             "src": "8898:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -3765,10 +3765,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        538,
-                        539
+                        541,
+                        542
                       ],
-                      "referencedDeclaration": 539,
+                      "referencedDeclaration": 542,
                       "src": "8890:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -4075,7 +4075,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 535,
+                            "referencedDeclaration": 538,
                             "src": "9146:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -4169,7 +4169,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 535,
+                          "referencedDeclaration": 538,
                           "src": "9210:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -4858,7 +4858,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 535,
+                                "referencedDeclaration": 538,
                                 "src": "9794:3:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -5101,10 +5101,10 @@
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              538,
-                              539
+                              541,
+                              542
                             ],
-                            "referencedDeclaration": 539,
+                            "referencedDeclaration": 542,
                             "src": "9840:7:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -5874,7 +5874,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 535,
+                                "referencedDeclaration": 538,
                                 "src": "10347:3:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -5964,7 +5964,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 535,
+                                "referencedDeclaration": 538,
                                 "src": "10400:3:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -6061,7 +6061,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 535,
+                                "referencedDeclaration": 538,
                                 "src": "10450:3:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -6159,10 +6159,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        538,
-                        539
+                        541,
+                        542
                       ],
-                      "referencedDeclaration": 539,
+                      "referencedDeclaration": 542,
                       "src": "10330:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -6243,7 +6243,7 @@
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721.sol",
+      "absolutePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/ERC721Token.sol",
       "exportedSymbols": {
         "AddressUtils": [
           20
@@ -8468,7 +8468,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 535,
+                                  "referencedDeclaration": 538,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -8571,10 +8571,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                538,
-                                539
+                                541,
+                                542
                               ],
-                              "referencedDeclaration": 539,
+                              "referencedDeclaration": 542,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -8615,7 +8615,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 535,
+                                      "referencedDeclaration": 538,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -8730,7 +8730,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 535,
+                                      "referencedDeclaration": 538,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -8832,7 +8832,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 535,
+                                  "referencedDeclaration": 538,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -8973,7 +8973,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 535,
+                                  "referencedDeclaration": 538,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -10286,10 +10286,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                538,
-                                539
+                                541,
+                                542
                               ],
-                              "referencedDeclaration": 539,
+                              "referencedDeclaration": 542,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -10330,7 +10330,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 535,
+                                      "referencedDeclaration": 538,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -10729,7 +10729,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 535,
+                                          "referencedDeclaration": 538,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -10852,7 +10852,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 535,
+                                  "referencedDeclaration": 538,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -11719,7 +11719,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 535,
+                                          "referencedDeclaration": 538,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -11814,10 +11814,10 @@
                                         }
                                       ],
                                       "overloadedDeclarations": [
-                                        538,
-                                        539
+                                        541,
+                                        542
                                       ],
-                                      "referencedDeclaration": 539,
+                                      "referencedDeclaration": 542,
                                       "type": "function (bool,string memory) pure",
                                       "value": "require"
                                     },
@@ -12574,10 +12574,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                538,
-                                539
+                                541,
+                                542
                               ],
-                              "referencedDeclaration": 539,
+                              "referencedDeclaration": 542,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -12662,7 +12662,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 535,
+                                              "referencedDeclaration": 538,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -12756,7 +12756,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 535,
+                                              "referencedDeclaration": 538,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -12865,7 +12865,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 535,
+                                              "referencedDeclaration": 538,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -12968,7 +12968,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-03-22T12:18:40.252Z",
+  "updatedAt": "2021-03-23T10:05:37.000Z",
   "devdoc": {
     "methods": {
       "onERC721Received(address,address,uint256,bytes)": {

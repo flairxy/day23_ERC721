@@ -1,0 +1,116 @@
+{
+  "contractName": "MockBadRecipient",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/MockBadRecipient.sol\":\"MockBadRecipient\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/MockBadRecipient.sol\":{\"keccak256\":\"0xe9cb61adae8dea20698f8725ee200fb14da1b75fdbb909045c7e8804d63dbb9c\",\"urls\":[\"bzz-raw://c8e5829337d359073d388eca976ba20314d5907abfbfc52e491ad6081960fd7d\",\"dweb:/ipfs/QmevFpn97aB2abHvc6XwDr32RJYAcYSQCZo2uk3JGpwiiV\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a7231582000d6ce85a3576307bbacbbb499c20051477ec85e439488364579564cebfe65cd64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a7231582000d6ce85a3576307bbacbbb499c20051477ec85e439488364579564cebfe65cd64736f6c63430005100032",
+  "sourceMap": "25:28:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:28:2;;;;;;;",
+  "deployedSourceMap": "25:28:2:-;;;;;",
+  "source": "pragma solidity ^0.5.7;\n\ncontract MockBadRecipient {}\n",
+  "sourcePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/MockBadRecipient.sol",
+  "ast": {
+    "absolutePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/MockBadRecipient.sol",
+    "exportedSymbols": {
+      "MockBadRecipient": [
+        523
+      ]
+    },
+    "id": 524,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 522,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 523,
+        "linearizedBaseContracts": [
+          523
+        ],
+        "name": "MockBadRecipient",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 524,
+        "src": "25:28:2"
+      }
+    ],
+    "src": "0:54:2"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/var/www/html/eattheblocks-pro-master/vueDap30/day23_ERC721/contracts/MockBadRecipient.sol",
+      "exportedSymbols": {
+        "MockBadRecipient": [
+          523
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".7"
+          ]
+        },
+        "id": 522,
+        "name": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            523
+          ],
+          "name": "MockBadRecipient",
+          "nodes": [
+            null
+          ],
+          "scope": 524
+        },
+        "id": 523,
+        "name": "ContractDefinition",
+        "src": "25:28:2"
+      }
+    ],
+    "id": 524,
+    "name": "SourceUnit",
+    "src": "0:54:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-03-23T10:05:37.004Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
